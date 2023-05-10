@@ -1,5 +1,6 @@
 package com.btbox.debezium_demo.debezium;
 
+import io.debezium.relational.history.FileDatabaseHistory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +21,7 @@ public class PostgresqlConfig {
                 .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
                 .with("offset.storage.file.filename", "D:/debezium/qm/offsets/offset.dat")
                 .with("offset.flush.interval.ms", "60000")
-//                .with("database.history", FileDatabaseHistory.class.getName())
+               .with("database.history", FileDatabaseHistory.class.getName())
                 .with("database.history.file.filename", "D:/debezium/qm/history/custom-file-db-history.dat")
                 .with("snapshot.mode", "initial")
                 .with("database.server.name", "my_pg_connector_server")
@@ -33,6 +34,17 @@ public class PostgresqlConfig {
 
                 .with("topic.prefix", "pgtest")
 //                with("table.include.list", tableList)
+
+                // .with("transforms", "pg-to-java-timestamp")
+                // .with("transforms.pg-to-java-timestamp.type", "com.btbox.debezium_demo.debezium.PostgresToJavaTimestampConverter")
+                // .with("transforms.pg-to-java-timestamp.column.name", "update_time")
+
+                .with("converters", "isbn")
+                .with("isbn.type", "com.btbox.debezium_demo.debezium.IsbnConverter")
+
+                .with("isbn.schema.name", "io.debezium.postgresql.type.Isbn")
+
+
                 .build();
 
     }

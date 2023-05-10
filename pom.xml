@@ -15,8 +15,8 @@
     <description>debezium_demo</description>
     <properties>
         <java.version>1.8</java.version>
-        <!--<debezium.version>1.9.0.Final</debezium.version>-->
-        <debezium.version>2.2.0.Final</debezium.version>
+        <debezium.version>1.9.0.Final</debezium.version>
+        <!--<debezium.version>2.2.0.Final</debezium.version>-->
 
     </properties>
     <dependencies>
@@ -71,7 +71,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.83</version>
         </dependency>
-
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.4.1</version>
+        </dependency>
     </dependencies>
 
     <build>
